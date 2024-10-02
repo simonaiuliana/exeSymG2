@@ -18,15 +18,7 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    # Sélection des Posts par titre descendant avec les utilisateurs
-    public function findByTitleDesc(): array
-    {
-        return $this->createQueryBuilder('p',)
-            ->innerJoin(User::class, 'u', 'WITH', 'p.user = u.id')
-            ->orderBy('p.postTitle', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
+
 
     //    /**
     //     * @return Post[] Returns an array of Post objects
