@@ -61,7 +61,7 @@ Vous pouvez utiliser un template pour le front et un autre (ou le même) pour le
 
 Créez les contrôleurs nécessaires pour afficher les pages du template.
 
-Créez un back-office pour gérer les articles et les commentaires.
+Créez un back-office pour gérer les articles et les sections.
 
 Comme login et mot de passe, vous pouvez utiliser `admin` et `admin` dans la table `user`.
 
