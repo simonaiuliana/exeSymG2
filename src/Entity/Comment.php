@@ -45,6 +45,15 @@ class Comment
     )]
     private ?bool $commentPublished = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $content = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +115,42 @@ class Comment
     public function setCommentPublished(bool $commentPublished): static
     {
         $this->commentPublished = $commentPublished;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): static
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
 
         return $this;
     }

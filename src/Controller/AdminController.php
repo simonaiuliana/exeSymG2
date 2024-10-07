@@ -1,6 +1,8 @@
 <?php
 
 
+// src/Controller/AdminController.php
+
 namespace App\Controller;
 
 use App\Entity\Admin;
@@ -42,11 +44,12 @@ class AdminController extends AbstractController
     #[Route('/admin/articles', name: 'admin_articles')]
     public function articles(): Response
     {
-        // Here you would typically fetch articles from the database.
-        // For now, let's return a simple response.
+        // Aici ar trebui să obții articolele din baza de date.
+        // Deocamdată, vom returna un răspuns simplu.
 
         return $this->render('admin/articles.html.twig', [
-            // Pass any necessary data to the template
+            // Trebuie să pasezi articolele din baza de date aici
         ]);
     }
 }
+
