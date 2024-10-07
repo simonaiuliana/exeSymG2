@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <title>{% block title %}Back Office{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Administration</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ path('admin_articles') }}">Gérer les Articles</a></li>
+                <li><a href="{{ path('admin_sections') }}">Gérer les Sections</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+</body>
+</html>
