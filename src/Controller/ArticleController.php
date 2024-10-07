@@ -1,25 +1,33 @@
 <?php
-
 namespace App\Controller;
 
-use App\Entity\Article;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Article;
+use App\Form\ArticleType;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ArticleController extends AbstractController
 {
-    #[Route('/admin/articles', name: 'admin_articles')]
-    public function index(EntityManagerInterface $entityManager): Response
+    #[Route('/article/create', name: 'create_article')]
+    public function create(Request $request, EntityManagerInterface $em): Response
     {
-        $articles = $entityManager->getRepository(Article::class)->findAll();
+        $article = new Article();
+        $form = $this->createForm(ArticleType::class, $article);
 
-        return $this->render('admin/articles.html.twig', [
-            'articles' => $articles,
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($article);
+            $em->flush();
+
+            return $this->redirectToRoute('articles'); // Redirecționează după crearea articolului
+        }
+
+        return $this->render('article/create.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
-
-    // Adaugă metodele pentru create, edit, delete articole aici
 }

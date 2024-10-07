@@ -1,0 +1,12 @@
+
+<h1>Lista articolelor</h1>
+
+{% if articles is not empty %}
+    <ul>
+        {% for article in articles %}
+            <li>{{ article.title }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Nu există articole disponibile.</p>
+{% endif %}

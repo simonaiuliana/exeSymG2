@@ -26,11 +26,18 @@ class HomeController extends AbstractController
         return $this->render('front/contact.html.twig');
     }
 
-    #[Route('/articles', name: 'articles')]
-    public function articles(): Response
+    #[Route('/article', name: 'article')]
+    public function create_article(): Response
     {
-        return $this->render('admin/articles.html.twig');
+        return $this->render('article/articles.html.twig');
     }
+
+    #[Route('/admin/create', name: 'create_admin')]
+    public function create(): Response
+    {
+    return $this->render('admin/create_admin.html.twig');
+    }
+
 
 }
 
