@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ArticleController extends AbstractController
 {
-    #[Route('/article/create', name: 'create_article')]
+    #[Route('/article/articles', name: 'create_article')]
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $article = new Article();
@@ -26,7 +26,7 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute('articles'); // Redirecționează după crearea articolului
         }
 
-        return $this->render('article/create.html.twig', [
+        return $this->render('article/articles.html.twig', [
             'form' => $form->createView(),
         ]);
     }

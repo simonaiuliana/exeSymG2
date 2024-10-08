@@ -1,54 +1,126 @@
-
-
+<!-- templates/base.html.twig -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <title>{% block title %}My Application{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>{% block title %}TheEvent - My Website{% endblock %}</title>
+    
+    <!-- Link to CSS files -->
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    
+    {% block stylesheets %}{% endblock %}
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ path('home') }}">My Application</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('info') }}">Info</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('articles') }}">Articles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('contact') }}">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body class="index-page">
 
-    <div class="container mt-4">
-        {% block body %}{% endblock %}
+    <!-- Navbar -->
+    {% block navbar %}
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+            <a href="{{ path('home') }}" class="logo d-flex align-items-center me-auto">
+                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="{{ path('home') }}">Home</a></li>
+                    <li><a href="{{ path('create_article') }}">Articles</a></li>
+                    <li><a href="{{ path('contact') }}">Contact</a></li>
+                    <li><a href="{{ path('app_login') }}">Login</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+
+            
+        </div>
+    </header>
+    {% endblock %}
+
+    <!-- Main Content -->
+    <div class="main">
+        {% block body %}
+        <section id="hero" class="hero section dark-background">
+            <img src="{{ asset('assets/img/hero-bg.jpg') }}" alt="" data-aos="fade-in">
+            <div class="container d-flex flex-column align-items-center text-center mt-auto">
+                <h2 data-aos="fade-up" data-aos-delay="100">THE ANNUAL<br><span>WEB</span> CONFERENCE</h2>
+                <p data-aos="fade-up" data-aos-delay="200">10-12 December, Downtown Conference Center, Bruxelles</p>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn mt-3"></a>
+                </div>
+            </div>
+        </section>
+        {% endblock %}
     </div>
 
-    <footer class="bg-light text-center mt-4 p-3">
-        <div class="container">
-            <p class="animate__animated animate__bounce">© 2024 Simona.</p>
+    <!-- Footer -->
+    {% block footer %}
+    <footer id="footer" class="footer dark-background">
+        <div class="footer-top">
+            <div class="container ps-3">
+                <div class="row gy-4">
+                    <div class="col-lg-7 col-md-6 footer-about">
+                        <a href="{{ path('home') }}" class="logo d-flex align-items-center">
+                            <span class="sitename">TheEvent</span>
+                        </a>
+                        <div class="footer-contact pt-3">
+                            <p>Rue du parc</p>
+                            <p>1060 bruxelles</p>
+                            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+                            <p><strong>Email:</strong> <span>info@simona.com</span></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7 col-md-3 footer-links">
+                        <h4>Links utiles</h4>
+                        <ul>
+                            <li><a href="{{ path('home') }}">Home</a></li>
+                            <li><a href="{{ path('create_article') }}">Articles</a></li>
+                            <li><a href="{{ path('contact') }}">Contact</a></li>
+                            <li><a href="{{ path('app_login') }}">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright text-center">
+            <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+                <div class="d-flex flex-column align-items-center align-items-lg-start">
+                    <div>
+                        © Copyright <strong><span>Simona</span></strong>. All Rights Reserved
+                    </div>
+                    <div class="credits">
+                        Designed by <a href="https://bootstrapmade.com/">Simona</a>
+                    </div>
+                </div>
+
+                <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
+                    <a href=""><i class="bi bi-twitter-x"></i>S</a>
+                    <a href=""><i class="bi bi-facebook"></i>I</a>
+                    <a href=""><i class="bi bi-instagram"></i>M</a>
+                    <a href=""><i class="bi bi-linkedin"></i>O</a>
+                    <a href=""><i class="bi bi-instagram"></i>N</a>
+                    <a href=""><i class="bi bi-linkedin"></i>A</a>
+                </div>
+            </div>
         </div>
     </footer>
+    {% endblock %}
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    {% block javascripts %}{% endblock %}
 </body>
 </html>
-
