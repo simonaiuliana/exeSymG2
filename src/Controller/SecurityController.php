@@ -10,32 +10,54 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils, SectionRepository $sectionRepository): Response
+    #[Route(path: '/login/admin', name: 'app_login_admin')]
+    public function adminLogin(AuthenticationUtils $authenticationUtils, SectionRepository $sectionRepository): Response
     {
-        // Redirectare dacă utilizatorul este deja autentificat
+        // Redirect if the user is already authenticated
         if ($this->getUser()) {
-            return $this->redirectToRoute('coucou'); // Asigură-te că ruta 'coucou' este definită
+            return $this->redirectToRoute('coucou'); // Ensure that the 'coucou' route is defined
         }
 
-        // Obține eroarea de autentificare dacă există
+        // Get the last authentication error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        // Ultimul username introdus de utilizator
+        // Last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', [
+        return $this->render('security/admin_login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            'title' => "Connexion",
-            'sections' => $sectionRepository->findAll(), // Asigură-te că ai o entitate Section
+            'title' => "Admin Login",
+            'sections' => $sectionRepository->findAll(), // Ensure you have a Section entity
+        ]);
+    }
+
+    #[Route(path: '/login/user', name: 'app_login_user')]
+    public function userLogin(AuthenticationUtils $authenticationUtils, SectionRepository $sectionRepository): Response
+    {
+        // Redirect if the user is already authenticated
+        if ($this->getUser()) {
+            return $this->redirectToRoute('coucou'); // Ensure that the 'coucou' route is defined
+        }
+
+        // Get the last authentication error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // Last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/user_login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+            'title' => "User Login",
+            'sections' => $sectionRepository->findAll(), // Ensure you have a Section entity
         ]);
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
-        // Este gestionat de Symfony, nu trebuie implementat
+        // This method is intercepted by the logout key on your firewall
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }

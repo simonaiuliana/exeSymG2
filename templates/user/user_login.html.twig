@@ -1,27 +1,9 @@
-
-
 {% extends 'base.html.twig' %}
 
-{% block title %}Create Admin{% endblock %}
-
 {% block body %}
-<h1>Create Admin</h1>
-
-{{ form_start(form) }}
-    <div class="mb-3">
-        {{ form_row(form.username, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="mb-3">
-        {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="mb-3">
-        {{ form_row(form.password, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-{{ form_end(form) }}
-<div class="container mt-5">
-        <h2>Admin Login</h2>
-        <form action="{{ path('app_login_admin') }}" method="post">
+    <div class="container mt-5">
+        <h2>User Login</h2>
+        <form action="{{ path('app_login_user') }}" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="_username" value="{{ last_username }}" required class="form-control"/>

@@ -31,7 +31,9 @@ security:
             logout:
                 path: app_logout
                 target: home
+                
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user, roles: ROLE_USER }

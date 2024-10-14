@@ -40,6 +40,14 @@
 
             
         </div>
+        {% block login %}
+          <div class="container text-center mt-5">
+             <h1>Bienvenue dans le sistem!</h1>
+             <p>Selectionez comment vous voulez vous connecter</p>
+             <a href="{{ path('app_login_admin') }}" class="btn btn-primary m-2">Log in as Admin</a>
+             <a href="{{ path('app_login_user') }}" class="btn btn-secondary m-2">Log in as User</a>
+          </div>
+    {% endblock %}
     </header>
     {% endblock %}
 

@@ -5,7 +5,13 @@ framework:
         # Configure how to generate URLs in non-HTTP contexts, such as CLI commands.
         # See https://symfony.com/doc/current/routing.html#generating-urls-in-commands
         #default_uri: http://localhost
+app_login_admin:
+    path: /login/admin
+    controller: App\Controller\SecurityController::adminLogin
 
+app_login_user:
+    path: /login/user
+    controller: App\Controller\SecurityController::userLogin
 when@prod:
     framework:
         router:
