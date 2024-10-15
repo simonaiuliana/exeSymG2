@@ -38,6 +38,13 @@ class HomeController extends AbstractController
     return $this->render('admin/create_admin.html.twig');
     }
 
+    #[Route('/security/login', name: 'app_login')]
+    public function login(): Response
+    {
+    return $this->render('admin/create_admin.html.twig');
+    }
+
+
 
 }
 

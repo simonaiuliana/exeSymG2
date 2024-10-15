@@ -1,5 +1,26 @@
 controllers:
-    resource:
-        path: ../src/Controller/
-       
+    resource: '../src/Controller/'
     type: attribute
+
+app_login_admin:
+    path: /admin/login
+    controller: App\Controller\AdminController::login
+
+app_login_user:
+    path: /login/user
+    controller: App\Controller\SecurityController::userLogin
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+
+create_article:
+    path: /articles/create
+    controller: App\Controller\ArticleController::create
+
+contact:
+    path: /contact
+    controller: App\Controller\ContactController::contact
+
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
